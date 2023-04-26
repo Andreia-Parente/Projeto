@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     //importacao do PaginaInicialController
     HomeController,
+    ContactoController
 
 };
 
@@ -23,3 +24,5 @@ use App\Http\Controllers\{
 //importacao dos routes dos controllers
 //routes publicos
 Route::get('/', [HomeController::class, 'mostrar_pagina_inicial']);
+
+Route::get('/contacto', [ContactoController::class, 'mostrar_pagina_inicial'])->name('contacto');
