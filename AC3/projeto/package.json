@@ -13,6 +13,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@inertiajs/vue3": "^1.0.6"
+        "@inertiajs/progress": "^0.2.7",
+        "@inertiajs/vue3": "^1.0.6",
+        "ziggy-js": "^1.5.1"
     }
 }
