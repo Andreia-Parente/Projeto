@@ -1,7 +1,9 @@
 <template>
-    <Head title="Pagina_Inicial" />
+    <Head title="Home" />
 
     <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+
+        <Link href="/contacto">a</Link>
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex justify-center">
@@ -112,6 +114,7 @@ export default{
     //adiciona os componentes ao template
     components:{
         Head,
+        Link
     }
 }
 </script>
