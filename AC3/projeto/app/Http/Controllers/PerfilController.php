@@ -5,18 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //importacao do inertia ao controller
 use Inertia\Inertia;
-
+//importacao das tabelas de utilizador
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
+//ver o utilizador autenticado
+use Illuminate\Support\Facades\Auth;
 
 class PerfilController extends Controller
 {
     //para criar a vista da pagina perfil
     public function inicio_perfil(Request $request){
         //mostra todos os itens do utilizador
-        $users = User::all();
-        //mostra a Pagina da Perfil.vue
-        return Inertia::render('Paginas_Privadas/Perfil', compact('users'));
+        $user = $user = Auth::user();
+
+        //mostra a Pagina da Perfil.vue com os dados do utilizador autenticado
+        return Inertia::render('Paginas_Privadas/Perfil', ['user'=>$user]);
     }
 
     public function update(Request $request){
