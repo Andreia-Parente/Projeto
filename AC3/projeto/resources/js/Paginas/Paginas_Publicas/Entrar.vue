@@ -100,13 +100,11 @@
 import { Head, Link, useForm } from '@inertiajs/vue3';
 //import Menu_Utilizador from './Menu_Utilizador.vue';
 //import Menu_Admin from './Menu_Admin.vue';
-import AuthenticationCard from '@/Componentes/AuthenticationCard.vue';
 export default{
     //adiciona os componentes ao template
     components:{
         Head,
         Link,
-        AuthenticationCard
     },
     //define os valores do formulario
     setup(){
