@@ -102,7 +102,7 @@
 <script>
 //importa os itens para o template
 import AppLayout from '@/Componentes/AppLayout.vue';
-import {useForm } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 export default{
     //adiciona os componentes ao template
     components: {
@@ -129,8 +129,6 @@ export default{
         //retorna o formulario para que assim seja acedido no template
         return { form };
     },
-
-    
     //cria os metodos 
     methods: {
         //envia os valores do formulario para o route entrar
