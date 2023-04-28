@@ -122,8 +122,6 @@ export default{
             image: null,
             urlImage:props.user.image
         });
-
-
         console.log(props.user.nome);
 
         //retorna o formulario para que assim seja acedido no template
