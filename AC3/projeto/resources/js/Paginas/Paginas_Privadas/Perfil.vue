@@ -110,21 +110,21 @@ export default{
     },
     //define os props(ou seja define o tipo de valores que esta no template)
     props: {
-        users: Object,
+        user: Object,
         photoPreview: Boolean,
         defualtSrc: String,
     },
     //define os valores do formulario
     setup(props){
         const form = useForm({
-            name: props.users[0].name,
-            email: props.users[0].email,
+            name: props.user.name,
+            email: props.user.email,
             image: null,
-            urlImage:props.users[0].image
+            urlImage:props.user.image
         });
 
 
-        console.log(props.users[0].nome);
+        console.log(props.user.nome);
 
         //retorna o formulario para que assim seja acedido no template
         return { form };
