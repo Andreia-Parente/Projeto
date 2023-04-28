@@ -174,7 +174,6 @@ export default{
     },
     //define os valores do formulario e do o valor do showNavigationDropdown
     setup(){
-
         const showingNavigationDropdown = ref(false);
 
         //retorna o formulario e do showingNavigationDropdown para que assim seja acedido no template
