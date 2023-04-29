@@ -23,8 +23,10 @@ class RegistrarController extends Controller
 
         //verifica se existe
         if ($verificar_utilizador_existe) {
-            $success = false;
             $message = 'O utilizador já existe';
+
+            //mostra a mensagem e leva o utilizador para a pagina
+            return redirect('/registrar')->with('message', $message);
         } else {
             $utilizador = new User();
             $utilizador->name = $request->name;
@@ -33,18 +35,10 @@ class RegistrarController extends Controller
             $utilizador->password = Hash::make($request->password);
             $utilizador->save();
 
-            $success = true;
             $message = 'Utilizador registado com sucesso';
-        
-        }
 
-        $response = [
-            'success' => $success,
-            'message' => $message,
-        ];
-                
-        //return response()->json($response);
-        //mostra a mensagem a leva utilizador para a pagina
-        return redirect('/entrar')->with('message', json_encode($response));
+            //mostra a mensagem e leva o utilizador para a pagina
+            return redirect('/entrar')->with('message', $message);
+        }
     }
 }
