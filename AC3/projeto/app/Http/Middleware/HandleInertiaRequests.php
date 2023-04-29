@@ -36,8 +36,12 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        //serve para mostrar as mensagens para sabe se o utilizador existe ou não, se já criou ou não com sucesso
+        //algum item
         return array_merge(parent::share($request), [
-            //
+            'flash' => [
+                'message' => $request->session()->get('message')
+            ]
         ]);
     }
 }
