@@ -20,29 +20,24 @@ class EntrarController extends Controller
     public function entrar(Request $request){
         //define um array com os valores do nome e palavra-passe
         $credenciais = [
-            //'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
         ];
 
         //entra com as credenciais do array
         if (Auth::attempt($credenciais)) {
-            $success = true;
             $message = 'Utilizador entrou com sucesso';
+
+            //mostra a mensagem e leva o utilizador para a pagina
+            return redirect('/pagina_inicial_utilizador')->with('message', $message);  
         } else {
-            $success = false;
             $message = 'Utilizador não encontrado';
-        }
 
-        $response = [
-            'success' => $success,
-            'message' => $message,
-        ];
-
-        //mostra a mensagem a leva utilizador para a pagina
-        return redirect('/pagina_inicial_utilizador')->with('message', json_encode($response));          
+            //mostra a mensagem e leva o utilizador para a pagina
+            return redirect('/entrar')->with('message', $message);
+        }         
     }
-
+    
     public function sair(){
         try {
             //liverta a sessao iniciada
