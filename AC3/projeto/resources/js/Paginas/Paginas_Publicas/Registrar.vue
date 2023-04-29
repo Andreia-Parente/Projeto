@@ -2,6 +2,11 @@
     <!--define o nome da pagina-->
     <Head title="Registrar"></Head>
     <!--mostra o menu criado na pagina Menu-->
+    
+    <!--mostra a mensagem a dizer se o utilizador existe ou não-->
+    <div class="alert alert-danger" role="alert" v-if="$page.props.flash.message">
+        {{ $page.props.flash.message }}
+    </div>
   
     <!--cria o template do card-->
     <div class="container-xxl">
