@@ -33,7 +33,7 @@
                             </div>
                             <div class="mb-4">
 
-                                <input type="file" @change='upload_avatar' class="w-full
+                                <input type="file" @change='atualizar_avatar' class="w-full
                                         px-4
                                         py-2
                                         mt-2
@@ -44,13 +44,13 @@
                                         focus:ring-blue-600">
 
 
-                                        <div v-if="!photoPreview" style="margin-top:10px">
-                           <img :src="form.urlImage" class="rounded-full h-20 w-20 object-cover" />
+                                        <div v-show="!verImagem" style="margin-top:10px">
+                            <img :src="getImagens() + form.urlImage" class="rounded-full h-20 w-20 object-cover" />
                         </div>
 
                         
-                        <div v-if="photoPreview" style="margin-top:10px">
-                           <img :src="form.urlImage" class="rounded-full h-20 w-20 object-cover" />
+                        <div v-show="verImagem" style="margin-top:10px">
+                           <img :src="verImagem" class="rounded-full h-20 w-20 object-cover" />
                         </div>
 
 
@@ -103,6 +103,7 @@
 //importa os itens para o template
 import AppLayout from '@/Componentes/AppLayout.vue';
 import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 export default{
     //adiciona os componentes ao template
     components: {
@@ -110,9 +111,7 @@ export default{
     },
     //define os props(ou seja define o tipo de valores que esta no template)
     props: {
-        user: Object,
-        photoPreview: Boolean,
-        defualtSrc: String,
+        user: Object
     },
     //define os valores do formulario
     setup(props){
@@ -122,10 +121,12 @@ export default{
             image: null,
             urlImage:props.user.image
         });
-        console.log(props.user.nome);
+
+        //variavel para mostrar a imagem do utilizador
+        const verImagem = ref();
 
         //retorna o formulario para que assim seja acedido no template
-        return { form };
+        return { form , verImagem};
     },
     //cria os metodos 
     methods: {
@@ -135,15 +136,26 @@ export default{
                 forceFormData: true,
             });
         },
-        //serve para fazer upload da imagem
-        upload_avatar(e){
-           this.form.image = e.target.files[0];
+        //serve para fazer atualizar o avatar
+        atualizar_avatar(e){
+            let file = e.target.files[0];
+            //atribui a imagem ao form image
+            this.form.image = e.target.files[0];
+            //mostra no console a form image
+            console.log(this.form.image);
+            //le o ficheiro
             let reader = new FileReader();
-            reader.readAsDataURL(this.form.image);  
-            reader.onload = (e) => {
-                this.form.urlImage = e.target.result;
-            }              
-        }
+            //carrega a imagem para o verImagem
+            reader.onloadend = (file) => {
+                this.verImagem = reader.result;
+            }
+            //le o url do ficheiro
+            reader.readAsDataURL(file); 
+        },
+        //vai buscar a pasta que encontra as imagens
+        getImagens(){
+            return 'imagens_perfil/';
+        } 
     }  
 }
 </script>
