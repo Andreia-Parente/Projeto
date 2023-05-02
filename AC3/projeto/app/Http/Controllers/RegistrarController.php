@@ -18,7 +18,7 @@ class RegistrarController extends Controller
     }
 
     public function registrar(Request $request){
-        //define um nome para pesquisar u utilizador existente
+        //define um nome para pesquisar o utilizador existente
         $verificar_utilizador_existe = User::where('email', $request->email)->exists();
 
         //verifica se existe
