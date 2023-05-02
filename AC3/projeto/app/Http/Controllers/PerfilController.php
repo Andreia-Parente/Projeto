@@ -21,7 +21,7 @@ class PerfilController extends Controller
         return Inertia::render('Paginas_Privadas/Perfil', ['user'=>$user]);
     }
 
-    public function update(Request $request){
+    public function atualizar_perfil(Request $request){
         //define um nome para pesquisar o utilizador existente
         $verificar_utilizador_existe = User::where('email', $request->email)->exists();
         
