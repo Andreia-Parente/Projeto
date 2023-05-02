@@ -33,13 +33,17 @@
                     <div v-show="verImagem" style="margin-top:10px">
                         <img :src="verImagem" class="rounded-full h-20 w-20 object-cover" />
                     </div>
+                    <!--cria o botao para remover a imagem-->
+                    <div class="mb-3">
+                        <button class="btn btn-primary d-grid w-100" @click="remover_avatar">Remover Avatar</button>
+                    </div>
                 </div>
                 <div class="mb-6">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email:</label>
                     <input type="email" class="form-control" id="email" name="email" v-model="form.email"
                         placeholder="Introduza o email" />
                 </div>
-                <!--cria o botao-->
+                <!--cria o botao para atualizar a imagem-->
                 <div class="mb-3">
                     <button class="btn btn-primary d-grid w-100" type="submit">Atualizar Perfil</button>
                 </div>
@@ -104,9 +108,12 @@ export default{
         //vai buscar a pasta que encontra as imagens
         getImagens(){
             return 'imagens_perfil/';
-        } 
+        },
+        //serve para remover a imagem
+        remover_avatar(){
+            this.verImagem = null;
+            console.log(this.verImagem);
+        }
     }  
 }
 </script>
-
-
