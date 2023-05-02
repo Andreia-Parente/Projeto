@@ -46,7 +46,7 @@ class PerfilController extends Controller
                 $pastaDestino = 'imagens_perfil/';
                 $imagemNome = date('YmdHis') . "." . $image->getClientOriginalExtension();
                 $image->move($pastaDestino, $imagemNome);
-                $input['image'] = "$profileImage";
+                $input['image'] = "$pastaDestino";
             }else{
                 unset($input['image']);
             }
