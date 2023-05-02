@@ -13,5 +13,4 @@ class PaginaInicialController extends Controller
         //mostra a Pagina da Pagina_Inicial.vue
         return Inertia::render('Paginas_Publicas/Pagina_Inicial');
     }
-
 }
