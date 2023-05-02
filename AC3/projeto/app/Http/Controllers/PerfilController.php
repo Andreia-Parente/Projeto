@@ -34,7 +34,7 @@ class PerfilController extends Controller
         
         //verifica o ficheiro, pasta, extensao e cria os objetos
         if ($image = $request->file('image')) {
-            $destinationPath = 'images/';
+            $destinationPath = 'imagens_perfil/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
