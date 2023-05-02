@@ -59,10 +59,10 @@
 
                                         <div>
                                         <DropdownLink href="#" class="font-medium text-base text-gray-800">
-                                           <!-- {{ $page.props.auth.user.name }}-->
+                                         {{ $page.props.auth.user.name }}
                                         </DropdownLink>
                                         <DropdownLink href="#" class="font-medium text-sm text-gray-500">
-                                          <!--   {{ $page.props.auth.user.email }}-->
+                                          {{ $page.props.auth.user.email }}
                                         </DropdownLink>
                                          </div>
 
