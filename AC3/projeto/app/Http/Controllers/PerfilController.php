@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class PerfilController extends Controller
 {
     //para criar a vista da pagina perfil
-    public function inicio_perfil(Request $request){
+    public function mostrar_perfil(Request $request){
         //mostra todos os itens do utilizador
         $user = $user = Auth::user();
 
@@ -22,7 +22,6 @@ class PerfilController extends Controller
     }
 
     public function update(Request $request){
-
         //serve para buscar os dados do nome e email que esta iniciada a sessao
         $request->user()->fill($request->validate([
             'name' => 'required',
@@ -34,22 +33,19 @@ class PerfilController extends Controller
         
         //verifica o ficheiro, pasta, extensao e cria os objetos
         if ($image = $request->file('image')) {
-            $destinationPath = 'imagens_perfil/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
+            $pastaDestino = 'imagens_perfil/';
+            $imagemNome = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($pastaDestino, $imagemNome);
             $input['image'] = "$profileImage";
         }else{
             unset($input['image']);
         }
 
+        //atualiza o perfil do utilizador
         $request->user()->update($input);
 
-
-        
-
+         //leva o utilizador para a pagina
         return redirect()->route('perfil');
         
     }
-
-
 }
