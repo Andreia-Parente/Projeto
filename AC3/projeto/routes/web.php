@@ -47,5 +47,5 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('pagina_inicial_utilizador', [PaginaInicialUtilizadorController::class, 
         'mostrar_pagina_inicial_utilizador'])->name('pagina_inicial_utilizador');
     Route::get('perfil', [PerfilController::class, 'mostrar_perfil'])->name('perfil');
-    Route::post('perfil', [PerfilController::class, 'update'])->name('perfil.atualizar');
+    Route::post('perfil', [PerfilController::class, 'atualizar_perfil'])->name('perfil.atualizar');
 });
