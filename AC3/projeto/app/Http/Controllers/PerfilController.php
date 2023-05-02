@@ -22,30 +22,40 @@ class PerfilController extends Controller
     }
 
     public function update(Request $request){
-        //serve para buscar os dados do nome e email que esta iniciada a sessao
-        $request->user()->fill($request->validate([
-            'name' => 'required',
-            'email' => 'required'
-        ]));
-
-        //iguala o input a todos os dados
-        $input = $request->all();
+        //define um nome para pesquisar o utilizador existente
+        $verificar_utilizador_existe = User::where('email', $request->email)->exists();
         
-        //verifica o ficheiro, pasta, extensao e cria os objetos
-        if ($image = $request->file('image')) {
-            $pastaDestino = 'imagens_perfil/';
-            $imagemNome = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($pastaDestino, $imagemNome);
-            $input['image'] = "$profileImage";
-        }else{
-            unset($input['image']);
+        //verifica se existe
+        if ($verificar_utilizador_existe) {
+            $message = 'O utilizador já existe';
+
+            //mostra a mensagem e leva o utilizador para a pagina
+            return redirect('perfil')->with('message', $message);
+        } else {
+            //serve para buscar os dados do nome e email que esta iniciada a sessao
+            $request->user()->fill($request->validate([
+                'name' => 'required',
+                'email' => 'required'
+            ]));
+
+            //iguala o input a todos os dados
+            $input = $request->all();
+            
+            //verifica o ficheiro, pasta, extensao e cria os objetos
+            if ($image = $request->file('image')) {
+                $pastaDestino = 'imagens_perfil/';
+                $imagemNome = date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($pastaDestino, $imagemNome);
+                $input['image'] = "$profileImage";
+            }else{
+                unset($input['image']);
+            }
+
+            //atualiza o perfil do utilizador
+            $request->user()->update($input);
+
+            //leva o utilizador para a pagina
+            return redirect()->route('perfil');
         }
-
-        //atualiza o perfil do utilizador
-        $request->user()->update($input);
-
-         //leva o utilizador para a pagina
-        return redirect()->route('perfil');
-        
     }
 }
