@@ -132,7 +132,7 @@ export default{
     methods: {
         //envia os valores do formulario para o route entrar
         submit(){
-            this.form.post(route("profile.update"), {
+            this.form.post(route("perfil.atualizar"), {
                 forceFormData: true,
             });
         },
